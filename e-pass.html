@@ -1,0 +1,77 @@
+<?php
+if(isset($_post['sb']))
+{
+ $SERVER='localhost';
+ $username='root';
+ $password='';
+ $database='record';
+ 
+ 
+ $con=new mysqli($SERVER,$username,$password,$database);
+ if(!$con){
+    die("connection to this database failed due to" . mysqli_connect_error());
+ }
+ //echo 'success to connect the db';
+
+$name=$_POST['NAME'];
+$email=$_POST['EMAIL'];
+$username=$_POST['USERNAME'];
+$password=$_POST['PASSWORD'];
+$sql="INSERT INTO `record`.`register` (`NAME`, `EMAIL`, `USERNAME`, `PASSWORD`) VALUES ('$name', '$email', '$username', '$password')";
+echo $sql;
+
+/*if($con->query($sql) == true){
+    echo "Successfully inserted";
+}
+else{
+    echo "ERROR: $sql <br> $con->error";
+}*/
+//$con->close();
+
+}
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Pass - Online Bus Pass</title>
+    <link rel="stylesheet" href="e-pass.css">
+   <link rel="stylesheet" href="" class="php">
+</head>
+<body>
+    <header>
+        <h1>E-Pass - Online Bus Pass</h1>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="home.html">Home</a></li>
+            <li><a href="signup.html">Sign Up</a></li>
+            <li><a href="login.html" >Login</a></li>
+            <li><a href="applyforpass.html">Apply for Pass</a></li>       
+        </ul>
+    </nav>
+    <main>
+        <h2 type="center">Apply for Pass</h2>
+        <section id="signup">
+            <h2>Sign Up</h2>
+            <form id="signupForm" action="script.php" method="post">
+                <label for="fullname">Full Name:</label>
+                <input type="text" id="fullname" name="fm"><br><br>
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="em"><br><br>
+                <label for="newUsername">Choose a Username:</label>
+                <input type="text" id="newUsername" name="nu"><br><br>
+                <label for="newPassword">Choose a Password:</label>
+                <input type="password" id="newPassword" name="pw"><br><br>
+                <button class="btn" type="submit" id="signup-1" name="sb">Sign Up </button>     <button type="submit">Login</button>
+            </form>
+           <!-- <div id="sucess-msg" class="sucess-msg"> signup sucessfully</div> -->
+        </section>   
+        </main>
+    <footer>
+        <p>&copy; 2024 E-Pass. All rights reserved.</p>
+    </footer>
+</body>
+</html>
